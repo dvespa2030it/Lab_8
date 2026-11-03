@@ -32,20 +32,43 @@ Completa ejercicio 3: reservas y liberaciones
 """
 
 def reservar_puesto(puestos, coordenada):
-    # TODO: implementa esta funcion.
-    pass
+    fila, columna = coordenada
+    if fila < 0 or fila >= len(puestos):
+        return False
+    if columna < 0 or columna >= len(puestos[0]):
+        return False
+    if puestos[fila][columna] != 0:
+        return False
+
+    puestos[fila][columna] = 1
+    return True
 
 
 def liberar_puesto(puestos, coordenada):
-    # TODO: implementa esta funcion.
-    pass
+    fila, columna = coordenada
+    if fila < 0 or fila >= len(puestos):
+        return False
+    if columna < 0 or columna >= len(puestos[0]):
+        return False
+    if puestos[fila][columna] != 1:
+        return False
+
+    puestos[fila][columna] = 0
+    return True
 
 
 if __name__ == "__main__":
     puestos = [[1, 0, 1], [0, 0, 1]]
 
-    # TODO: escribe las llamadas y muestra los resultados con print.
-    # TODO: agrega al menos un caso propio.
+    print("Reservar (0, 1):", reservar_puesto(puestos, (0, 1)))
+    print("Reservar otra vez (0, 1):", reservar_puesto(puestos, (0, 1)))
+    print("Liberar (1, 2):", liberar_puesto(puestos, (1, 2)))
+    print("Liberar otra vez (1, 2):", liberar_puesto(puestos, (1, 2)))
+    print("Reservar (5, 0):", reservar_puesto(puestos, (5, 0)))
+    print("Reservar (-1, 0):", reservar_puesto(puestos, (-1, 0)))
+    print("Reservar (1, 1), caso propio:", reservar_puesto(puestos, (1, 1)))
+    print("Tablero final:", puestos)
 
 # ANALISIS
-# TODO: responde aqui las preguntas del enunciado.
+# No hace falta recorrer el tablero: se accede directamente a la coordenada.
+# Validar indices y consultar/modificar un elemento toma tiempo O(1).
