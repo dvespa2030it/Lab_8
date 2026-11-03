@@ -51,3 +51,5 @@ def generar_reporte(productos):
         "categorias": categorias,
         "precios_con_recargo": precios_con_recargo,
     }
+
+#.

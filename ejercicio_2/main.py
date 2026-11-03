@@ -38,3 +38,4 @@ print(
 # Resultado esperado:
 # {'disponibles': ['jugo'], 'valor_total': 24, 'hay_agotados': False,
 #  'categorias': {'bebida'}, 'precios_con_recargo': [('jugo', 13.2)]}
+#.
