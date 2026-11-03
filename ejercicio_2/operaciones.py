@@ -18,9 +18,36 @@ No modifiques productos ni imprimas dentro de la función.
 Para [] devuelve listas y set vacíos, valor_total=0 y hay_agotados=False.
 """
 
-# TODO: importa reduce desde functools.
+from functools import reduce
 
 
 def generar_reporte(productos):
-    # TODO: construye y devuelve el reporte.
-    pass
+    disponibles = list(
+        map(
+            lambda producto: producto["nombre"],
+            filter(lambda producto: producto["stock"] > 0, productos),
+        )
+    )
+    valor_total = reduce(
+        lambda total, producto: total + producto["precio"] * producto["stock"],
+        productos,
+        0,
+    )
+    hay_agotados = any(
+        map(lambda producto: producto["stock"] == 0, productos)
+    )
+    categorias = {producto["categoria"] for producto in productos}
+    recargo = lambda precio: round(precio * 1.1, 2)
+    precios_con_recargo = [
+        (producto["nombre"], recargo(producto["precio"]))
+        for producto in productos
+        if producto["stock"] > 0
+    ]
+
+    return {
+        "disponibles": disponibles,
+        "valor_total": valor_total,
+        "hay_agotados": hay_agotados,
+        "categorias": categorias,
+        "precios_con_recargo": precios_con_recargo,
+    }

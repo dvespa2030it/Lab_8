@@ -24,11 +24,17 @@ Añade otro ejemplo con print y su resultado esperado en un comentario.
 Haz un commit: "Resuelve ejercicio 2".
 """
 
-# TODO: importa PRODUCTOS desde datos.
-# TODO: importa generar_reporte desde operaciones.
+from datos import PRODUCTOS
+from operaciones import generar_reporte
 
-# TODO: una vez completadas las importaciones, descomenta estas líneas.
-# print(generar_reporte(PRODUCTOS))
-# print(generar_reporte([]))
+print(generar_reporte(PRODUCTOS))
+print(generar_reporte([]))
 
-# TODO: añade otro ejemplo con print y su resultado esperado en un comentario.
+print(
+    generar_reporte(
+        [{"nombre": "jugo", "precio": 12, "stock": 2, "categoria": "bebida"}]
+    )
+)
+# Resultado esperado:
+# {'disponibles': ['jugo'], 'valor_total': 24, 'hay_agotados': False,
+#  'categorias': {'bebida'}, 'precios_con_recargo': [('jugo', 13.2)]}
